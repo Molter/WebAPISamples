@@ -1,0 +1,66 @@
+FORMAT: 1A
+# TVShows
+TVShows is an API to retrieve information about some TV shows I am currently watching
+
+# group Shows
+Resources related to the shows
+
+## Show Collection [/shows]
+
+### List all Shows [GET]
++ Response 200 (application/json)
+
+        [
+            {
+                "name" : "Punisher",
+                "episodes" : 26,
+                "source": "Netflix"
+            },
+            {
+                "name" : "Titans",
+                "episodes" : 13,
+                "source": "Netflix"
+            }
+        ]
+### Insert show [PUT]
+Insert a new show into the catalog
++ name (string) - TV Show name
++ episodes (number) - Total episodes, no need to be 100% accurate
++ source (string) - Where to watch
+
++ Request (application/json)
+
+        {
+            "name" : "Mr. Robot",
+            "episodes" : 50,
+            "source": "Amazon Prime"
+        }
+        
++ Response 201 (application/json)
+        + Headers 
+            Location: /Shows/1
+
+    + Body
+        
+            {
+                "name" : "Titans",
+                "episodes" : 13,
+                "source": "Netflix",
+                "show_id" : 1
+            }
+
+## TV Show [/shows/{show_id}]
++ Parameters 
+    + show_id: 1 (required, number) - Id of the show
+    
+### Get Show [GET]
++ Response 200 (application/json)
+
+        {
+            "name" : "Titans",
+            "episodes" : 13,
+            "source": "Netflix",
+            "show_id" : 1
+        }
+### Delete [DELETE]
++ Response 204
